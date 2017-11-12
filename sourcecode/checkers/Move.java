@@ -29,16 +29,24 @@ public class Move {
       {
         System.out.println("This Move is not legal");
       }
+      
       else
       {
       System.out.println("piece at  "  + fromRow + ":" + fromCol + " is : " + board.board[fromRow][fromCol]);
       System.out.println("piece at  "  + toRow + ":" + toCol + " is : " + board.board[toRow][toCol]);
       }
+    
+    if(board.board[fromRow][fromCol] == board.RED){
     if(board.board[fromRow][fromCol] == board.RED && fromRow > toRow)
     {
       System.out.println("Move is not legal");
     }
-    
+    if(board.board[toRow][toCol] == board.RED || board.board[toRow][toCol] == board.BLACK)
+    {
+      System.out.print("Already Contains a Piece" + "\n");
+      
+    }
+    }
     // if(board.board[fromRow][fromCol] == board.RED  && toRow + 1)
       {
       //  System.out.print("Move Not Legal");
