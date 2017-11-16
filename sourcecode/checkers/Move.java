@@ -1,5 +1,6 @@
 //Move Class
 import java.util.*;
+import java.util.ArrayList;
 public class Move {
   
   Board board = new Board(); 
@@ -7,77 +8,78 @@ public class Move {
   int fromCol;
   int toRow;
   int toCol;  
+  ArrayList<Move> moves = new ArrayList<Move>();
   Scanner input = new Scanner(System.in);
     
-  public void movePiece()
+  public void movePiece(int fromRow, int toRow, int fromCol, int toCol)
   {
-    board.updateBoard(); 
-    board.printBoard();
-    
-    System.out.println("Please input a Row");
-    fromRow = input.nextInt();
-    System.out.println("Please input a Column");
-    fromCol = input.nextInt();
-      
-    System.out.println("Please input a Row");
-    toRow = input.nextInt();
-    System.out.println("Please input a Column");
-    toCol = input.nextInt();
-    
-    if(board.board[fromRow][fromCol] == board.RED){
-    if(board.board[fromRow][fromCol] == board.RED && fromRow > toRow)
-    {
-      System.out.println("Move is not legal");
-    }
-    if(board.board[toRow][toCol] == board.RED)
-    {
-      System.out.print("Already Contains a Red Piece" + "\n");
-      
-    }
-      
-    }
-    
-    if(board.board[fromRow][fromCol] == board.BLACK)
-    {
-    if(board.board[toRow][toCol] == board.BLACK)
-        {
-          System.out.print("Already Contains a Black Piece" + "\n");
-    }
-    }
-    
-    // fromRow = input.nextInt();
-      if(fromRow < 0 || fromRow > 8 || toRow < 0 || toCol > 8)
-      {
-        System.out.println("This Move is not legal");
-      }
-      
-      else
-      {
-      System.out.println("piece at  "  + fromRow + ":" + fromCol + " is : " + board.board[fromRow][fromCol]);
-      System.out.println("piece at  "  + toRow + ":" + toCol + " is : " + board.board[toRow][toCol]);
+      board.updateBoard();
+      board.printBoard();
       
       board.board[fromRow][fromCol] = board.board[toRow][toCol];
       board.board[fromRow][fromCol] = 0;
+      
+      if(toRow == 7 && board.board[toRow][toCol] == board.RED)
+      {
+          board.board[toRow][toCol] = board.REDKING; //Converts RED Piece 
+      }
+      if(toRow == 0 && board.board[toRow][toCol] == board.BLACK)
+      {
+          board.board[toRow][toCol] = board.BLACKKING;
       }
     
+  }
+  //ArrayList which will store all of the Legal Moves within the Game
+  public ArrayList<Move> pieceLegalMoves(int row, int col)
+  {
     
+    if(board.board[row][col] == board.RED || board.board[row][col] == board.REDKING)
+    {
+      if(canPieceMove(row, col, row + 1, col +1))
+      {
+        moves.add(row, col, row + 1, col +1);
+      }
+    }
+  }
     
-    if(toCol == 7 && board.board[toRow][toCol] == board.RED)
+    private boolean canPieceMove(int fromRow, int fromCol, int toRow, int toCol)
     {
-      board.board[toRow][toCol] = board.REDKING;
+      if(fromRow < 0 || fromRow > 8 || toRow < 0 || toCol > 8)
+      {
+        return false; // Piece cannot go out of the bounds of the board
+      } 
+      
+      if(board.board[toRow][toCol] != board.EMPTY)
+      {
+        return false; //Already Contains a Piece
+      }
+
+      if(board.board[fromRow][fromCol] == board.RED)
+      {
+        if(board.board[fromRow][fromCol] == board.RED && fromRow > toRow)
+        {
+          return false; // Red Piece's can only move down
+        
+        }
+        return true; //Legal Move
+      }
+      else
+      {
+        if(board.board[fromRow][fromCol] == board.BLACK)
+        {
+          if(board.board[fromRow][fromCol] == board.BLACK && fromRow > toRow)
+          {
+            return false; // Red Piece's can only move up
+          }return true; //Legal Move
+        }
+      }return true;
     }
-    if(toCol == 0 && board.board[toRow][toCol] == board.BLACK)
-    {
-      board.board[toRow][toCol] = board.BLACKKING;
-    }
+}
+    
   
     
-    System.out.println("Array at Postion Input " + board.board[fromRow][fromCol] + " New Postion " + board.board[toRow][toRow]);
     
-    board.printBoard();
-    }
-    
-  }
+  
 
   
 
