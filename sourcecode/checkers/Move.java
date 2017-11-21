@@ -10,7 +10,22 @@ public class Move {
   int toCol;  
   ArrayList<Move> moves = new ArrayList<Move>();
   Scanner input = new Scanner(System.in);
+  
+  //Move constructor
+  public Move(int row1, int col1, int row2, int col2) {
+      fromRow = row1;
+      fromCol = col1;
+      toRow = row2;
+      toCol = col2;
+    }
     
+    boolean isJump() 
+    {
+        return (fromRow - toRow == 2 || fromRow - toRow == -2);
+    }
+
+
+  
   public void movePiece(int fromRow, int toRow, int fromCol, int toCol)
   {
       board.updateBoard();
@@ -37,9 +52,22 @@ public class Move {
     {
       if(canPieceMove(row, col, row + 1, col +1))
       {
-        moves.add(row, col, row + 1, col +1);
+        moves.add(new Move(row, col, row + 1, col +1));
+      }
+      if(canPieceMove(row, col, row-1, col+1))
+      {
+        moves.add(new Move(row, col, row -1, col +1));
+      }
+      if(canPieceMove(row, col, row + 1 , col -1))
+      {
+        moves.add(new Move(row, col, row + 1, col -1 ));
+      }
+      if(canPieceMove(row, col, row - 1, row -1))
+      {
+        moves.add(new Move(row, col, row - 1, col - 1));
       }
     }
+    return moves;
   }
     
     private boolean canPieceMove(int fromRow, int fromCol, int toRow, int toCol)
