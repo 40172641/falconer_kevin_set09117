@@ -76,6 +76,10 @@ public class Move {
 			{
 				System.out.println("Red Cannot Move Horizontally");
 				return false;
+			}if(toRow == fromRow+2 && toCol != fromCol+2 && board.board[toRow][toCol] == board.EMPTY)
+			{
+				System.out.println("Red Cannot Move Horizontally");
+				return true;
 			}		
 			if(toCol != fromCol-1 && toCol != fromCol+1 && toRow != fromRow-1) {
 				if(toCol != fromCol-2 && toCol != fromCol+2 && toRow !=fromRow-2 && board.board[toRow][toCol] != 0) 
@@ -83,6 +87,11 @@ public class Move {
 						System.out.print("Illegal Move");
 						return false;
 					}
+			if(toRow != fromRow-1 && toRow != fromRow+1)
+			{
+				System.out.println("Red Cannot Move Horizontally");
+				return false;
+			}		
 				} return true;
 			} 
 				else {
@@ -98,7 +107,11 @@ public class Move {
 				}
 				
 				if(toCol != fromCol-1 && toCol != fromCol+1) {
-					System.out.println("Illegal Move");
+					System.out.println("Black Cannot Move Vertically, Illegal Move");
+					return false; // Legal Move
+				}
+				if(toRow != fromRow-1 && toRow != fromRow+1) {
+					System.out.println("Black Cannot Move Vertically, Illegal Move");
 					return false; // Legal Move
 				}
 				if(board.board[fromRow][fromCol] == board.EMPTY)
@@ -106,16 +119,18 @@ public class Move {
 					System.out.println("Cannot select empty piece");
 					return false;
 				}
-				if (board.board[fromRow][fromCol] == board.BLACK && toRow == fromRow+1 && toCol == fromCol + 1) 
+				if(board.board[toRow][toCol] == board.BLACK)
 				{
-					System.out.print("Black cannot vertically!");
-					return false; // Red Piece's can only move down
-				}if (board.board[fromRow][fromCol] == board.BLACK && toRow == fromRow+0 && toCol == fromCol + 1) 
-				{
-					System.out.print("Black cannot Horizontally");
-					return false; // Red Piece's can only move down
+					System.out.println("Cannot move onto a Black Piece");
+					return false;
 				}
-				
+				if(toCol != fromCol-1 && toCol != fromCol+1 && toRow != fromRow-1) {
+					if(toCol != fromCol-2 && toCol != fromCol+2 && toRow !=fromRow-2 && board.board[toRow][toCol] != 0) 
+						{
+							System.out.print("Illegal Move");
+							return false;
+						}
+				}
 				return true; // Legal Move
 			}
 		}
