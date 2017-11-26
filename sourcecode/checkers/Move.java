@@ -46,6 +46,37 @@ public class Move {
 			System.out.print("Cannot Move Empty Piece");
 			return false; // Already Contains a Piece
 		}
+		//RED KING LEGAL MOVES
+		if(board.board[fromRow][fromCol] == board.REDKING)
+		{
+			if(!board.player1) 
+			{
+				System.out.println("Wrong Piece");
+				return false;
+			}
+			if(toCol != fromCol-1 && toCol != fromCol+1)
+			{
+				System.out.println("Red King Cannot Move Vertically");
+				return false;
+			}
+			if(toRow != fromRow-1 && toRow != fromRow+1)
+			{
+				System.out.println("Red King Cannot Move Horizontally");
+				return false;
+			}
+			if(board.board[toRow][toCol] == board.RED || board.board[toRow][toCol] == board.REDKING)
+			{
+				System.out.println("Cannot move onto a Red Piece");
+				return false;
+			}
+			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
+			{
+				System.out.print("Cannot directly capture that Piece");
+				return false;
+			}
+			return true;
+		}
+		
 		// RED PIECE MOVEMENT
 		if (board.board[fromRow][fromCol] == board.RED) {
 			if(!board.player1) 
@@ -73,7 +104,7 @@ public class Move {
 				System.out.println("Red Cannot Move Horizontally");
 				return false;
 			}
-			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK)
+			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
 			{
 				System.out.print("Cannot directly capture that Piece");
 				return false;
@@ -130,22 +161,8 @@ public class Move {
 						}
 				}
 				return true; // Legal Move
-			}if(board.board[fromRow][fromCol] == board.REDKING)
-			{
-				if(!board.player1)
-				{
-					if(board.board[toRow][toCol] == board.RED)
-					{
-						if(board.board[toRow][toCol] == board.REDKING){
-						return false;
-						}
-					}
-					{
-						
-					}
-				}
 			}
-		}
+		}	
 	
 		return true;
 	}
