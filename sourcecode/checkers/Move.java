@@ -75,6 +75,37 @@ public class Move {
 				return false;
 			}
 			return true;
+		}else
+		{
+			if(board.board[fromRow][fromCol] == board.BLACKKING)
+			{
+				if(board.player1) 
+				{
+					System.out.println("Wrong Piece");
+					return false;
+				}
+				if(toCol != fromCol-1 && toCol != fromCol+1)
+				{
+					System.out.println("Black King Cannot Move Vertically");
+					return false;
+				}
+				if(toRow != fromRow-1 && toRow != fromRow+1)
+				{
+					System.out.println("Black King Cannot Move Horizontally");
+					return false;
+				}
+				if(board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
+				{
+					System.out.println("Cannot move onto a Black Piece");
+					return false;
+				}
+				if(toRow == fromRow -1 && board.board[toRow][toCol] == board.RED || board.board[toRow][toCol] == board.REDKING)
+				{
+					System.out.print("Cannot directly capture that Piece");
+					return false;
+				}
+				return true;	
+			}
 		}
 		
 		// RED PIECE MOVEMENT
