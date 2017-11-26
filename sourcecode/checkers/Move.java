@@ -46,16 +46,12 @@ public class Move {
 			System.out.print("Cannot Move Empty Piece");
 			return false; // Already Contains a Piece
 		}
+		// RED PIECE MOVEMENT
 		if (board.board[fromRow][fromCol] == board.RED) {
 			if(!board.player1) 
 			{
 				System.out.println("Wrong Piece");
 				return false;
-			}
-			if (board.board[fromRow][fromCol] == board.RED && fromRow > toRow) {
-				System.out.print("Red cannot move up");
-				return false; // Red Piece's can only move down
-						
 			}
 			if (board.board[fromRow][fromCol] == board.RED && fromRow > toRow) {
 				System.out.print("Red cannot move up");
@@ -76,24 +72,21 @@ public class Move {
 			{
 				System.out.println("Red Cannot Move Horizontally");
 				return false;
-			}if(toRow == fromRow+2 && toCol != fromCol+2 && board.board[toRow][toCol] == board.EMPTY)
+			}
+			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK)
 			{
-				System.out.println("Red Cannot Move Horizontally");
-				return true;
-			}		
+				System.out.print("Cannot directly capture that Piece");
+				return false;
+			}
 			if(toCol != fromCol-1 && toCol != fromCol+1 && toRow != fromRow-1) {
 				if(toCol != fromCol-2 && toCol != fromCol+2 && toRow !=fromRow-2 && board.board[toRow][toCol] != 0) 
 					{
 						System.out.print("Illegal Move");
 						return false;
-					}
-			if(toRow != fromRow-1 && toRow != fromRow+1)
-			{
-				System.out.println("Red Cannot Move Horizontally");
-				return false;
-			}		
-				} return true;
+					}	
+			} return true;
 			} 
+			//BLACK PIECE MOVEMENT
 				else {
 			if (board.board[fromRow][fromCol] == board.BLACK) {
 				if(board.player1) 
@@ -124,6 +117,11 @@ public class Move {
 					System.out.println("Cannot move onto a Black Piece");
 					return false;
 				}
+				if(toRow == fromRow -1 && board.board[toRow][toCol] == board.RED)
+				{
+					System.out.print("Cannot directly capture that Piece");
+					return false;
+				}
 				if(toCol != fromCol-1 && toCol != fromCol+1 && toRow != fromRow-1) {
 					if(toCol != fromCol-2 && toCol != fromCol+2 && toRow !=fromRow-2 && board.board[toRow][toCol] != 0) 
 						{
@@ -132,6 +130,20 @@ public class Move {
 						}
 				}
 				return true; // Legal Move
+			}if(board.board[fromRow][fromCol] == board.REDKING)
+			{
+				if(!board.player1)
+				{
+					if(board.board[toRow][toCol] == board.RED)
+					{
+						if(board.board[toRow][toCol] == board.REDKING){
+						return false;
+						}
+					}
+					{
+						
+					}
+				}
 			}
 		}
 	
