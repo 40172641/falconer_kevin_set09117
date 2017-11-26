@@ -1,4 +1,4 @@
-package checkers;
+
 
 //Move Class
 import java.util.*;
@@ -17,7 +17,6 @@ public class Move {
 	int fromCol;
 	int toRow;
 	int toCol;
-	ArrayList<Move> moves = new ArrayList<Move>();
 
 	// Move constructor
 	boolean isJump() {
@@ -36,19 +35,17 @@ public class Move {
 		}
 
 	}
-	// ArrayList which will store all of the Legal Moves within the Game
-
+	
 	public boolean canPieceMove(int fromRow, int fromCol, int toRow, int toCol) {
 		if (fromRow < 0 || fromRow > 8 || toRow < 0 || toCol > 8) {
 			System.out.print("Out of Bounds");
 			return false; // Piece cannot go out of the bounds of the board
 		}
 
-		if (board.board[toRow][toCol] != board.EMPTY) {
-			System.out.print("Already contains a Piece");
+		if (board.board[fromRow][fromCol] == board.EMPTY) {
+			System.out.print("Cannot Move Empty Piece");
 			return false; // Already Contains a Piece
 		}
-
 		if (board.board[fromRow][fromCol] == board.RED) {
 			if(!board.player1) 
 			{
@@ -58,19 +55,37 @@ public class Move {
 			if (board.board[fromRow][fromCol] == board.RED && fromRow > toRow) {
 				System.out.print("Red cannot move up");
 				return false; // Red Piece's can only move down
-				
+						
 			}
+			if (board.board[fromRow][fromCol] == board.RED && fromRow > toRow) {
+				System.out.print("Red cannot move up");
+				return false; // Red Piece's can only move down
+						
+			}
+			if(board.board[toRow][toCol] == board.RED)
+			{
+				System.out.println("Cannot move onto a Red Piece");
+				return false;
+			}
+			if(toCol != fromCol-1 && toCol != fromCol+1)
+			{
+				System.out.println("Red Cannot Move Vertically");
+				return false;
+			}
+			if(toRow != fromRow-1 && toRow != fromRow+1)
+			{
+				System.out.println("Red Cannot Move Horizontally");
+				return false;
+			}		
 			if(toCol != fromCol-1 && toCol != fromCol+1 && toRow != fromRow-1) {
 				if(toCol != fromCol-2 && toCol != fromCol+2 && toRow !=fromRow-2 && board.board[toRow][toCol] != 0) 
-				{
-					System.out.print("Illegal Move");
-					return false;
-				}// Legal Move	
+					{
+						System.out.print("Illegal Move");
+						return false;
+					}
+				} return true;
 			} 
-			{
-				
-			}
-		} else {
+				else {
 			if (board.board[fromRow][fromCol] == board.BLACK) {
 				if(board.player1) 
 				{
@@ -86,6 +101,21 @@ public class Move {
 					System.out.println("Illegal Move");
 					return false; // Legal Move
 				}
+				if(board.board[fromRow][fromCol] == board.EMPTY)
+				{
+					System.out.println("Cannot select empty piece");
+					return false;
+				}
+				if (board.board[fromRow][fromCol] == board.BLACK && toRow == fromRow+1 && toCol == fromCol + 1) 
+				{
+					System.out.print("Black cannot vertically!");
+					return false; // Red Piece's can only move down
+				}if (board.board[fromRow][fromCol] == board.BLACK && toRow == fromRow+0 && toCol == fromCol + 1) 
+				{
+					System.out.print("Black cannot Horizontally");
+					return false; // Red Piece's can only move down
+				}
+				
 				return true; // Legal Move
 			}
 		}

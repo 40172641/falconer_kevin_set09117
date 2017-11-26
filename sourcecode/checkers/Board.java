@@ -1,4 +1,3 @@
-package checkers;
 
 import java.util.*;
 
@@ -36,12 +35,14 @@ public class Board {
 	}
 
 	public void printBoard() {
-		System.out.println("1" + " " + "2" + " 3 " + "4 " + "5 " + "6 " + "7 " + "8 ");
+		System.out.println("\n" +"   0" + " " + "  1" + "   2 " + "  3 " + "  4 " + "  5 " + "  6 " + "  7 ");
+		System.out.println("--------------------------------");
 		for (int row = 0; row < 8; row++) {
+			System.out.print(row);
 			for (int col = 0; col < 8; col++) {
-				System.out.print(board[row][col] + " ");
+				System.out.print("| " + board[row][col] + " ");
 			}
-			System.out.println("");
+			System.out.println("\n");
 		}
 
 	}
