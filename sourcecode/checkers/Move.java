@@ -1,5 +1,3 @@
-
-
 //Move Class
 import java.util.*;
 import java.util.ArrayList;
@@ -171,7 +169,15 @@ public class Move {
 					System.out.print("Black cannot move down");
 					return false; // Red Piece's can only move up
 				}
-				
+				if(board.board[toRow][toCol] == board.EMPTY)
+				{
+					if(fromRow == toRow + 2 && toRow == fromRow - 2 && (toCol == fromCol + 2 || toCol == fromCol - 2))
+						{
+						System.out.println("Red Piece Captured!!!");
+						board.board[fromRow-1][fromCol+1] = board.EMPTY;
+						return true;
+					}
+				}
 				if(toCol != fromCol-1 && toCol != fromCol+1) {
 					System.out.println("Black Cannot Move Vertically, Illegal Move");
 					return false; // Legal Move
