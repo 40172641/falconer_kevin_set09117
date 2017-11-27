@@ -15,6 +15,8 @@ public class Move {
 	int fromCol;
 	int toRow;
 	int toCol;
+	int redPieces = 0;
+	int blackPieces = 0;
 
 	// Move constructor
 	boolean isJump() {
@@ -141,7 +143,7 @@ public class Move {
 					{
 						if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING)
 							{
-								System.out.println("Black Piece Captured on 1!!!");
+								System.out.println("Black Piece Captured!!!");
 								board.board[fromRow-1][fromCol-1] = board.EMPTY;
 								return true;
 							}
@@ -150,7 +152,7 @@ public class Move {
 					{
 						if(board.board[fromRow-1][fromCol+1] == board.RED|| board.board[fromRow-1][fromCol+1] == board.REDKING)
 							{
-								System.out.println("Black Piece Captured on 1!!!");
+								System.out.println("Black Piece Captured!!!");
 								board.board[fromRow-1][fromCol+1] = board.EMPTY;
 								return true;
 							}
@@ -213,6 +215,8 @@ public class Move {
 						{
 							System.out.println("Black Piece Captured on Right!!!");
 							board.board[fromRow+1][fromCol+1] = board.EMPTY;
+							blackPieces= blackPieces + 1;
+							System.out.println("Black Piece's Captured: " + blackPieces);
 							return true;
 						}
 				}
@@ -234,8 +238,7 @@ public class Move {
 			if(toRow != fromRow-1 && toRow != fromRow+1) {
 				System.out.println("Red Cannot Move Vertically, Illegal Move");
 				return false; // Legal Move
-			}
-			//JUMP XOXO					
+			}				
 			if(board.board[toRow][toCol] == board.RED)
 			{
 				System.out.println("Cannot move onto a Red Piece");

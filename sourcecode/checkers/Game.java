@@ -1,13 +1,12 @@
-package checkers;
 
 import java.util.*;
 
 public class Game {
 	Board myBoard;
-	int froRow;
-	int froCol;
-	int tRow;
-	int tCol;
+	int fromRow;
+	int fromCol;
+	int toRow;
+	int toCol;
 	
 	Move moveClass; 
 	Scanner input = new Scanner(System.in);
@@ -24,25 +23,32 @@ public class Game {
 		while (gameInProgress) {
 			myBoard.printBoard();
 			String playerChoice = myBoard.player1?"Red":"Black";
-			System.out.println(playerChoice + "Turn");
+			System.out.println(playerChoice + " Turn");
 			userInput();
-			if (!moveClass.canPieceMove(froRow, froCol, tRow, tCol)) {
+			if (!moveClass.canPieceMove(fromRow, fromCol, toRow, toCol)) {
 				continue;
 			} else {
-				moveClass.movePiece(froRow, froCol, tRow, tCol);
+				moveClass.movePiece(fromRow, fromCol, toRow, toCol);
 				myBoard.player1 = !myBoard.player1;
+			}if(moveClass.blackPieces == 12)
+			{
+				System.out.println("Winner Red, Congrats!");
+				break;	
+			}if(moveClass.redPieces == 12)
+			{
+				System.out.println("Winner Black, Congrats!");
 			}
 		}
 	}
 
 	public void userInput() {
-		System.out.print("Please input a row");
-		froRow = input.nextInt();
-		System.out.print("Please input a column");
-		froCol = input.nextInt();
-		System.out.println("Please input a row to");
-		tRow = input.nextInt();
-		System.out.println("Please input a Column to");
-		tCol = input.nextInt();
+		System.out.print("\n" +"Please input a row ");
+		fromRow = input.nextInt();
+		System.out.print("Please input a column ");
+		fromCol = input.nextInt();
+		System.out.println("Please input a row to ");
+		toRow = input.nextInt();
+		System.out.println("Please input a Column to ");
+		toCol = input.nextInt();
 	}
 }
