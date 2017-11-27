@@ -52,7 +52,56 @@ public class Move {
 				System.out.println("Wrong Piece");
 				return false;
 			}
+			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
+			{
+				System.out.print("Cannot directly capture that Piece");
+				return false;
+			}
+			if(toRow == fromRow -1 && board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
+			{
+				System.out.print("Cannot directly capture that Piece");
+				return false;
+			}
 			
+			if(board.board[toRow][toCol] == board.EMPTY){	
+				if(toRow == fromRow + 2 && toCol == fromCol + 2)
+				{
+					if(board.board[fromRow+1][fromCol+1] == board.BLACK || board.board[fromRow+1][fromCol+1] == board.BLACKKING)
+						{
+							System.out.println("Black Piece Captured on Right!!!");
+							board.board[fromRow+1][fromCol+1] = board.EMPTY;
+							return true;
+						}
+				}
+				if(toRow == fromRow - 2 && toCol == fromCol - 2)
+				{
+					if(board.board[fromRow-1][fromCol-1] == board.BLACK || board.board[fromRow-1][fromCol-1] == board.BLACKKING)
+						{
+							System.out.println("Black Piece Captured on 1!!!");
+							board.board[fromRow-1][fromCol-1] = board.EMPTY;
+							return true;
+						}
+				}
+				if(toRow == fromRow - 2 && toCol == fromCol + 2)
+				{
+					if(board.board[fromRow-1][fromCol+1] == board.BLACK || board.board[fromRow-1][fromCol+1] == board.BLACKKING)
+						{
+							System.out.println("Black Piece Captured on 1!!!");
+							board.board[fromRow-1][fromCol+1] = board.EMPTY;
+							return true;
+						}
+				}
+				
+				if(toRow == fromRow + 2 && toCol == fromCol - 2)
+				{
+					if(board.board[fromRow+1][fromCol-1] == board.BLACK || board.board[fromRow+1][fromCol-1] == board.BLACKKING)
+					{
+						System.out.println("Black Piece on the Left!!!");
+						board.board[fromRow+1][fromCol-1] = board.EMPTY;
+						return true;
+					}
+				}
+			}	
 			if(toCol != fromCol-1 && toCol != fromCol+1)
 			{
 				System.out.println("Red King Cannot Move Vertically");
@@ -68,11 +117,6 @@ public class Move {
 				System.out.println("Cannot move onto a Red Piece");
 				return false;
 			}
-			if(toRow == fromRow +1 && board.board[toRow][toCol] == board.BLACK || board.board[toRow][toCol] == board.BLACKKING)
-			{
-				System.out.print("Cannot directly capture that Piece");
-				return false;
-			}
 			return true;
 		}else
 		{
@@ -83,6 +127,45 @@ public class Move {
 					System.out.println("Wrong Piece");
 					return false;
 				}
+				if(board.board[toRow][toCol] == board.EMPTY){	
+					if(toRow == fromRow + 2 && toCol == fromCol + 2)
+					{
+						if(board.board[fromRow+1][fromCol+1] == board.RED || board.board[fromRow+1][fromCol+1] == board.REDKING)
+							{
+								System.out.println("Black Piece Captured on Right!!!");
+								board.board[fromRow+1][fromCol+1] = board.EMPTY;
+								return true;
+							}
+					}
+					if(toRow == fromRow - 2 && toCol == fromCol - 2)
+					{
+						if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING)
+							{
+								System.out.println("Black Piece Captured on 1!!!");
+								board.board[fromRow-1][fromCol-1] = board.EMPTY;
+								return true;
+							}
+					}
+					if(toRow == fromRow - 2 && toCol == fromCol + 2)
+					{
+						if(board.board[fromRow-1][fromCol+1] == board.RED|| board.board[fromRow-1][fromCol+1] == board.REDKING)
+							{
+								System.out.println("Black Piece Captured on 1!!!");
+								board.board[fromRow-1][fromCol+1] = board.EMPTY;
+								return true;
+							}
+					}
+					
+					if(toRow == fromRow + 2 && toCol == fromCol - 2)
+					{
+						if(board.board[fromRow+1][fromCol-1] == board.RED || board.board[fromRow+1][fromCol-1] == board.REDKING)
+						{
+							System.out.println("Black Piece on the Left!!!");
+							board.board[fromRow+1][fromCol-1] = board.EMPTY;
+							return true;
+						}
+					}
+				}	
 				if(toCol != fromCol-1 && toCol != fromCol+1)
 				{
 					System.out.println("Black King Cannot Move Vertically");
@@ -99,6 +182,11 @@ public class Move {
 					return false;
 				}
 				if(toRow == fromRow -1 && board.board[toRow][toCol] == board.RED || board.board[toRow][toCol] == board.REDKING)
+				{
+					System.out.print("Cannot directly capture that Piece");
+					return false;
+				}
+				if(toRow == fromRow +1 && board.board[toRow][toCol] == board.RED || board.board[toRow][toCol] == board.REDKING)
 				{
 					System.out.print("Cannot directly capture that Piece");
 					return false;
