@@ -243,7 +243,85 @@ public class Move {
 							return true;
 						}
 					}
-				}	
+				}
+				
+				//JUMP
+				if(board.board[toRow][toCol] == board.EMPTY)
+				{	
+					if(toRow == fromRow + 4 && toCol == fromCol + 4)
+					{
+						if(board.board[fromRow+1][fromCol+1] == board.RED || board.board[fromRow+1][fromCol+1] == board.REDKING)
+						{
+							if(board.board[fromRow+2][fromCol+2] == board.EMPTY)
+							{
+								if(board.board[fromRow+3][fromCol+3] == board.RED || board.board[fromRow+3][fromCol+3] == board.REDKING)
+								{
+								System.out.println("Red Piece Captured!!!");
+								board.board[fromRow+1][fromCol+1] = board.EMPTY;
+								board.board[fromRow+3][fromCol+3] = board.EMPTY;
+								redPieces= redPieces + 2;
+								System.out.println("Black Piece's Captured: " + redPieces);
+								return true;
+								}
+							}
+						}
+					}
+					if(toRow == fromRow + 4 && toCol == fromCol - 4)
+					{
+						if(board.board[fromRow+1][fromCol-1] == board.RED || board.board[fromRow+1][fromCol-1] == board.REDKING)
+						{
+							if(board.board[fromRow+2][fromCol-2] == board.EMPTY)
+							{
+								if(board.board[fromRow+3][fromCol-3] == board.RED || board.board[fromRow+3][fromCol-3] == board.REDKING)
+								{
+								System.out.println("Red Piece Captured!!!");
+								board.board[fromRow+1][fromCol-1] = board.EMPTY;
+								board.board[fromRow+3][fromCol-3] = board.EMPTY;
+								redPieces= redPieces + 2;
+								System.out.println("Red Piece's Captured: " + redPieces);
+								return true;
+								}
+							}
+						}
+					}
+					if(toRow == fromRow - 4 && toCol == fromCol + 4)
+					{
+						if(board.board[fromRow-1][fromCol+1] == board.RED || board.board[fromRow+1][fromCol+1] == board.REDKING)
+						{
+							if(board.board[fromRow-2][fromCol+2] == board.EMPTY)
+							{
+								if(board.board[fromRow-3][fromCol+3] == board.RED || board.board[fromRow+3][fromCol+3] == board.REDKING)
+								{
+								System.out.println("Red Piece Captured!!!");
+								board.board[fromRow-1][fromCol+1] = board.EMPTY;
+								board.board[fromRow-3][fromCol+3] = board.EMPTY;
+								redPieces= redPieces + 2;
+								System.out.println("Red Piece's Captured: " + redPieces);
+								return true;
+								}
+							}
+						}
+					}
+						if(toRow == fromRow - 4 && toCol == fromCol - 4)
+						{
+							if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING)
+							{
+								if(board.board[fromRow-2][fromCol-2] == board.EMPTY)
+								{
+									if(board.board[fromRow-3][fromCol-3] == board.RED || board.board[fromRow-3][fromCol-3] == board.REDKING)
+									{
+									System.out.println("Black Piece Captured!!!");
+									board.board[fromRow-1][fromCol-1] = board.EMPTY;
+									board.board[fromRow-3][fromCol-3] = board.EMPTY;
+									redPieces= redPieces + 2;
+									System.out.println("Red Piece's Captured: " + redPieces);
+									return true;
+									}
+								}
+							}
+						}
+					}
+					
 				if(toCol != fromCol-1 && toCol != fromCol+1)
 				{
 					System.out.println("Black King Cannot Move Vertically");
