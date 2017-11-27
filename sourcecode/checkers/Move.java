@@ -70,8 +70,10 @@ public class Move {
 				{
 					if(board.board[fromRow+1][fromCol+1] == board.BLACK || board.board[fromRow+1][fromCol+1] == board.BLACKKING)
 						{
-							System.out.println("Black Piece Captured on Right!!!");
+							System.out.println("Black Piece Captured !!!");
 							board.board[fromRow+1][fromCol+1] = board.EMPTY;
+							blackPieces = blackPieces + 1;
+							System.out.println("Black Pieces Captured: " + blackPieces);
 							return true;
 						}
 				}
@@ -79,8 +81,10 @@ public class Move {
 				{
 					if(board.board[fromRow-1][fromCol-1] == board.BLACK || board.board[fromRow-1][fromCol-1] == board.BLACKKING)
 						{
-							System.out.println("Black Piece Captured on 1!!!");
+							System.out.println("Black Piece Captured!!!");
 							board.board[fromRow-1][fromCol-1] = board.EMPTY;
+							blackPieces = blackPieces + 1;
+							System.out.println("Black Pieces Captured: " + blackPieces);
 							return true;
 						}
 				}
@@ -88,8 +92,10 @@ public class Move {
 				{
 					if(board.board[fromRow-1][fromCol+1] == board.BLACK || board.board[fromRow-1][fromCol+1] == board.BLACKKING)
 						{
-							System.out.println("Black Piece Captured on 1!!!");
+							System.out.println("Black Piece Captured!!!");
 							board.board[fromRow-1][fromCol+1] = board.EMPTY;
+							blackPieces = blackPieces + 1;
+							System.out.println("Black Pieces Captured: " + blackPieces);
 							return true;
 						}
 				}
@@ -98,8 +104,10 @@ public class Move {
 				{
 					if(board.board[fromRow+1][fromCol-1] == board.BLACK || board.board[fromRow+1][fromCol-1] == board.BLACKKING)
 					{
-						System.out.println("Black Piece on the Left!!!");
+						System.out.println("Black Piece Captured!!!");
 						board.board[fromRow+1][fromCol-1] = board.EMPTY;
+						blackPieces = blackPieces + 1;
+						System.out.println("Black Pieces Captured: " + blackPieces);
 						return true;
 					}
 				}
@@ -210,8 +218,10 @@ public class Move {
 					{
 						if(board.board[fromRow+1][fromCol+1] == board.RED || board.board[fromRow+1][fromCol+1] == board.REDKING)
 							{
-								System.out.println("Black Piece Captured on Right!!!");
+								System.out.println("Red Piece Captured!!!");
 								board.board[fromRow+1][fromCol+1] = board.EMPTY;
+								redPieces = redPieces + 1;
+								System.out.println("Red Pieces Captured: " + redPieces);
 								return true;
 							}
 					}
@@ -219,8 +229,10 @@ public class Move {
 					{
 						if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING)
 							{
-								System.out.println("Black Piece Captured!!!");
+								System.out.println("Red Piece Captured!!!");
 								board.board[fromRow-1][fromCol-1] = board.EMPTY;
+								redPieces = redPieces + 1;
+								System.out.println("Red Pieces Captured: " + redPieces);
 								return true;
 							}
 					}
@@ -230,6 +242,8 @@ public class Move {
 							{
 								System.out.println("Black Piece Captured!!!");
 								board.board[fromRow-1][fromCol+1] = board.EMPTY;
+								redPieces = redPieces + 1;
+								System.out.println("Red Pieces Captured: " + redPieces);
 								return true;
 							}
 					}
@@ -238,8 +252,10 @@ public class Move {
 					{
 						if(board.board[fromRow+1][fromCol-1] == board.RED || board.board[fromRow+1][fromCol-1] == board.REDKING)
 						{
-							System.out.println("Black Piece on the Left!!!");
+							System.out.println("Black Piece Captured!!!");
 							board.board[fromRow+1][fromCol-1] = board.EMPTY;
+							redPieces = redPieces + 1;
+							System.out.println("Red Pieces Captured: " + redPieces);
 							return true;
 						}
 					}
@@ -256,7 +272,7 @@ public class Move {
 							{
 								if(board.board[fromRow+3][fromCol+3] == board.RED || board.board[fromRow+3][fromCol+3] == board.REDKING)
 								{
-								System.out.println("Red Piece Captured!!!");
+								System.out.println("Black Piece's Captured!!!");
 								board.board[fromRow+1][fromCol+1] = board.EMPTY;
 								board.board[fromRow+3][fromCol+3] = board.EMPTY;
 								redPieces= redPieces + 2;
@@ -274,7 +290,7 @@ public class Move {
 							{
 								if(board.board[fromRow+3][fromCol-3] == board.RED || board.board[fromRow+3][fromCol-3] == board.REDKING)
 								{
-								System.out.println("Red Piece Captured!!!");
+								System.out.println("Black Piece's Captured!!!");
 								board.board[fromRow+1][fromCol-1] = board.EMPTY;
 								board.board[fromRow+3][fromCol-3] = board.EMPTY;
 								redPieces= redPieces + 2;
@@ -367,7 +383,7 @@ public class Move {
 				{
 					if(board.board[fromRow+1][fromCol+1] == board.BLACK || board.board[fromRow+1][fromCol+1] == board.BLACKKING)
 						{
-							System.out.println("Black Piece Captured on Right!!!");
+							System.out.println("Black Piece Captured!!!");
 							board.board[fromRow+1][fromCol+1] = board.EMPTY;
 							blackPieces= blackPieces + 1;
 							System.out.println("Black Piece's Captured: " + blackPieces);
@@ -378,8 +394,10 @@ public class Move {
 				{
 					if(board.board[fromRow+1][fromCol-1] == board.BLACK || board.board[fromRow+1][fromCol-1] == board.BLACKKING)
 					{
-						System.out.println("Black Piece on the Left!!!");
+						System.out.println("Black Piece Captured!!!");
 						board.board[fromRow+1][fromCol-1] = board.EMPTY;
+						blackPieces= blackPieces + 1;
+						System.out.println("Black Piece's Captured: " + blackPieces);
 						return true;
 					}
 				}
@@ -398,7 +416,7 @@ public class Move {
 						{
 							if(board.board[fromRow+3][fromCol+3] == board.BLACK || board.board[fromRow+3][fromCol+3] == board.BLACKKING)
 							{
-							System.out.println("Black Piece Captured on Right!!!");
+							System.out.println("Black Piece's Captured!!!");
 							board.board[fromRow+1][fromCol+1] = board.EMPTY;
 							board.board[fromRow+3][fromCol+3] = board.EMPTY;
 							blackPieces= blackPieces + 2;
@@ -416,7 +434,7 @@ public class Move {
 						{
 							if(board.board[fromRow+3][fromCol-3] == board.BLACK || board.board[fromRow+3][fromCol-3] == board.BLACKKING)
 							{
-							System.out.println("Black Piece Captured on Right!!!");
+							System.out.println("Black Piece's Captured!!!");
 							board.board[fromRow+1][fromCol-1] = board.EMPTY;
 							board.board[fromRow+3][fromCol-3] = board.EMPTY;
 							blackPieces= blackPieces + 2;
@@ -465,8 +483,10 @@ public class Move {
 					if(toRow == fromRow - 2 && toCol == fromCol - 2)
 						if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING){
 						{
-							System.out.println("Red Piece Captured 1!!!");
+							System.out.println("Red Piece Captured!!!");
 							board.board[fromRow-1][fromCol-1] = board.EMPTY;
+							redPieces= redPieces + 1;
+							System.out.println("Red Piece's Captured: " + redPieces);
 							return true;
 							}
 						}
@@ -474,8 +494,10 @@ public class Move {
 					{
 						if(board.board[fromRow-1][fromCol+1] == board.RED || board.board[fromRow-1][fromCol+1] == board.REDKING)
 						{
-							System.out.println("Red Piece Captured 2!!!");
+							System.out.println("Red Piece Captured!!!");
 							board.board[fromRow-1][fromCol+1] = board.EMPTY;
+							redPieces= redPieces + 1;
+							System.out.println("Red Piece's Captured: " + redPieces);
 							return true;
 						}
 					}
@@ -493,7 +515,7 @@ public class Move {
 							{
 								if(board.board[fromRow-3][fromCol-3] == board.RED || board.board[fromRow+3][fromCol+3] == board.REDKING)
 								{
-								System.out.println("Black Piece Captured on Right!!!");
+								System.out.println("Red Piece Captured!!!");
 								board.board[fromRow-1][fromCol-1] = board.EMPTY;
 								board.board[fromRow-3][fromCol-3] = board.EMPTY;
 								redPieces= redPieces + 2;
@@ -512,7 +534,7 @@ public class Move {
 							{
 								if(board.board[fromRow-3][fromCol+3] == board.RED || board.board[fromRow-3][fromCol+3] == board.REDKING)
 								{
-								System.out.println("Black Piece Captured on Right!!!");
+								System.out.println("Red Piece's Captured!!!");
 								board.board[fromRow-1][fromCol+1] = board.EMPTY;
 								board.board[fromRow-3][fromCol+3] = board.EMPTY;
 								redPieces= redPieces + 2;
