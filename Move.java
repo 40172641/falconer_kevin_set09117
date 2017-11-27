@@ -118,14 +118,15 @@ public class Move {
 				return false; // Red Piece's can only move down			
 			}
 			
-		if(board.board[toRow][toCol] == board.EMPTY){
-			if(board.board[fromRow+1][fromCol+1] == board.BLACK || board.board[fromRow+1][fromCol+1] == board.BLACKKING){
+		if(board.board[toRow][toCol] == board.EMPTY){	
 			if(fromRow == toRow - 2 && toRow == fromRow + 2 && (toCol == fromCol + 2 || toCol == fromCol - 2))
 			{
+				if(board.board[fromRow+1][fromCol+1] == board.BLACK || board.board[fromRow+1][fromCol+1] == board.BLACKKING)
+				{
 				System.out.println("Black Piece Captured!!!");
 				board.board[fromRow+1][fromCol+1] = board.EMPTY;
 				return true;
-			}
+				}
 			}
 		}
 			if(toCol != fromCol-1 && toCol != fromCol+1) {
@@ -169,11 +170,16 @@ public class Move {
 					System.out.print("Black cannot move down");
 					return false; // Red Piece's can only move up
 				}
-				if(fromRow == toRow + 2 && toRow == fromRow - 2 && (toCol == fromCol + 2 || toCol == fromCol - 2))
+				if(board.board[toRow][toCol] == board.EMPTY)
 				{
-					System.out.println("Red Piece Captured!!!");
-					board.board[fromRow-1][fromCol+1] = board.EMPTY;
-					return true;
+					if(fromRow == toRow + 2 && toRow == fromRow - 2 && (toCol == fromCol + 2 || toCol == fromCol - 2))
+						if(board.board[fromRow-1][fromCol-1] == board.RED || board.board[fromRow-1][fromCol-1] == board.REDKING){
+						{
+							System.out.println("Red Piece Captured!!!");
+							board.board[fromRow-1][fromCol-1] = board.EMPTY;
+							return true;
+							}
+					}
 				}
 				if(toCol != fromCol-1 && toCol != fromCol+1) {
 					System.out.println("Black Cannot Move Vertically, Illegal Move");
